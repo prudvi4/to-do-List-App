@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon" />
+    <title>To-Do List App</title>
+  </head>
+  <body>
+    <!-- Main Container -->
+    <div class="container">
+      <div class="box">
+        <h2><i class="bx bx-list-ul"></i>To-Do List</h2>
+        <input type="text" placeholder="Enter the task...." id="inputBx" />
+        <ul id="list"></ul>
+      </div>
+    </div>
+    <!-- Footer Container -->
+    <div class="footer__container">
+      <ul class="footer__social">
+        <a href="https://github.com/prudvi4" target="_blank" class="footer__social-link">
+          <i class="ri-github-fill"></i>
+        </a>
+        <a href="https://prudvi4.github.io/PrudviRajWebsite/" target="_blank" class="footer__social-link">
+            <i class="ri-pages-fill"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/andoju-prudvi-raj-a74b5b270/" target="_blank" class="footer__social-link">
+          <i class="ri-linkedin-box-fill"></i>
+        </a> 
+      </ul>
+      <span class="footer__copy">
+        &#169; Copyright PrudviRaj.All Rights Reserved.!
+      </span>
+    </div>
+    <!-- Script Section -->
+    <script>
+      let inputBx = document.querySelector("#inputBx");
+      let list = document.querySelector("#list");
+
+      inputBx.addEventListener("keyup", function (event) {
+        if (event.key == "Enter") {
+          addItem(this.value);
+          this.value = "";
+        }
+      });
+
+      let addItem = (inputBx) => {
+        let listitem = document.createElement("li");
+        listitem.innerHTML = `${inputBx}<i></i>`;
+
+        listitem.addEventListener("click", function () {
+          this.classList.toggle("done");
+        });
+
+        listitem.querySelector("i").addEventListener("click", function () {
+          listitem.remove();
+        });
+        list.appendChild(listitem);
+      };
+      window.addEventListener('beforeunload',() =>{
+          event.preventDefault();
+          event.returnValue="";
+      })
+    </script>
+  </body>
+</html>
